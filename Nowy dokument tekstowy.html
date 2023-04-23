@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Moje samopoczucie</title>
+  </head>
+  <body>
+    <h1>Moje samopoczucie</h1>
+    <p>Jak się dzisiaj czujesz? Oceń swoje samopoczucie za pomocą gwiazdek:</p>
+    <div>
+      <label>
+        <input type="radio" name="ocena" value="1">
+        <span class="ocena">&#9733;</span>
+      </label>
+      <label>
+        <input type="radio" name="ocena" value="2">
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+      </label>
+      <label>
+        <input type="radio" name="ocena" value="3">
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+      </label>
+      <label>
+        <input type="radio" name="ocena" value="4">
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+      </label>
+      <label>
+        <input type="radio" name="ocena" value="5">
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+        <span class="ocena">&#9733;</span>
+      </label>
+    </div>
+    <button id="wyslij">Wyślij opinię</button>
+    <h2>Opinie innych użytkowników</h2>
+    <ul id="opinie">
+    </ul>
+    <script>
+      const form = document.querySelector('form');
+      const oceny = document.getElementsByName('ocena');
+      const wyslijBtn = document.getElementById('wyslij');
+      const opinieList = document.getElementById('opinie');
+
+      function dodajOpinie(ocena) {
+        const anonim = "Anonim";
+        const nowaOpinia = document.createElement('li');
+        nowaOpinia.textContent = `${anonim} ocenił na ${ocena} gwiazdki.`;
+        opinieList.appendChild(nowaOpinia);
+      }
+
+      wyslijBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const ocena = document.querySelector('input[name="ocena"]:checked');
+        if (ocena) {
+          dodajOpinie(ocena.value);
+          oceny.forEach((ocena) => ocena.checked = false);
+        } else {
+          alert('Wybierz ocenę!');
+        }
+      });
+    </script>
+  </body>
+</html>
